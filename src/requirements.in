@@ -1,0 +1,18 @@
+kedro
+
+black
+flake8
+isort
+
+pytest
+pytest-cov
+
+pandas
+
+scikit-learn
+tensorflow
+
+uvicorn
+
+# Update the requirements.txt file by running:
+# pip-compile -U src\requirements.in
