@@ -1,0 +1,59 @@
+name: Pull Request Checking
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  lint:
+    name: Code Lint Checking
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Check out the code
+        uses: actions/checkout@v3
+      
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.5' 
+
+      - name: Install requirements
+        run: |
+          pip install --quiet black
+          pip install --quiet flake8
+          pip install --quiet isort
+      
+      - name: Check Isort
+        run: |
+          isort --check .
+
+      - name: Check Flake8
+        run: |
+          flake8 --ignore=E203,E231,E402,E501,E712,E731,W503,W606 --exclude=.git,.ipython,__init__.py,env .
+
+      - name: Check Black
+        run: |
+          black --check .
+
+  unit_test:
+    name: Unit Test Checking
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Check out the code
+        uses: actions/checkout@v3
+      
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.5' 
+
+      - name: Install requirements
+        run: |
+          pip install --quiet --requirement src/requirements.in
+      
+      - name: Check unitary tests
+        run: |
+          pytest -v src/tests/tests_unitary/tests_unitary.py

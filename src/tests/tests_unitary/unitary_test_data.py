@@ -1,14 +1,13 @@
-from sklearn.datasets import fetch_20newsgroups
 import numpy as np
-from text_classification.utils.data_prep import (
-    text_cleaner,
-)
+from sklearn.datasets import fetch_20newsgroups
 
-# Load text dataset 
+from text_classification.utils.data_prep import text_cleaner
+
+# Load text dataset
 n_samples = 600
 newsgroups = fetch_20newsgroups(
-    subset = "test",
-    categories=["rec.sport.baseball", "rec.sport.hockey", 'talk.politics.guns'],
+    subset="test",
+    categories=["rec.sport.baseball", "rec.sport.hockey", "talk.politics.guns"],
     shuffle=True,
     random_state=0,
     remove=("headers", "footers", "quotes"),
