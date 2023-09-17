@@ -31,4 +31,4 @@ model_prediction:
 model_serving:
   title: "Text-Classifier" 
   host: "0.0.0.0"
-  port: 8888
+  port: 7860

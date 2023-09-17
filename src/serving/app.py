@@ -14,6 +14,11 @@ from serving.utils import (
 app = FastAPI(title=parameters["model_serving"]["title"])
 
 
+@app.get("/")
+def read_root():
+    return {"message": "ok"}
+
+
 @app.post("/predict")
 def predict(request: predict_request) -> predict_respose:
     """Predict the category for a given narrative."""
