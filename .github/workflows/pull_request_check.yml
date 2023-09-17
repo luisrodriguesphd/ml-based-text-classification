@@ -21,7 +21,9 @@ jobs:
 
       - name: Install requirements
         run: |
-          pip install --quiet --requirement src/requirements.txt
+          pip install --quiet black
+          pip install --quiet flake8
+          pip install --quiet isort
       
       - name: Check Isort
         run: |
