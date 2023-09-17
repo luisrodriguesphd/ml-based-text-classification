@@ -7,15 +7,14 @@ on:
 
 jobs:
 
-  build_image:
-    name: Image Building
+  run_test:
+    name: Code Test Checking
     runs-on: ubuntu-latest
     env:
       REQUIREMENTS_PATH: "./src/requirements.in"
       ENTRYPOINT_PATH: "./entrypoint.sh"
       DOCKERFILE_PATH: "Dockerfile"
       DOCKERIMAGE_NAME: "classifier_app"
-      DEPLOY_URL: "http://localhost:7860/"
 
     steps:
       
