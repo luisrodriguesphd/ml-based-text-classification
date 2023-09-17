@@ -1,7 +1,7 @@
 [tool.kedro]
 package_name = "text_classification"
 project_name = "text-classification"
-kedro_init_version = "0.18.13"
+kedro_init_version = "0.18.12"
 
 [tool.isort]
 profile = "black"

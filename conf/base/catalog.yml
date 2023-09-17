@@ -2,3 +2,18 @@
 #
 # Documentation for this file format can be found in "The Data Catalog"
 # Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+
+
+training_dataset:
+  type: pandas.CSVDataSet
+  filepath: data/01_raw/complaints.csv
+
+target_encoder: # simple example without compression
+  type: pickle.PickleDataSet
+  filepath: data/06_models/tle.pkl
+  backend: pickle
+
+classifier: # simple example without compression
+  type: pickle.PickleDataSet
+  filepath: data/06_models/clf.pkl
+  backend: pickle

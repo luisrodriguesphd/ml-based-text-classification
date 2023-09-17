@@ -1,4 +1,4 @@
-kedro==0.18.13
+kedro==0.18.12
 
 black
 flake8
