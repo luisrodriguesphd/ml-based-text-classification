@@ -25,11 +25,10 @@ jobs:
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
+      - name: Train the machine learning model
+        run: |
+          docker run --rm --entrypoint "kedro" $DOCKERIMAGE_NAME run --pipeline training
+
       - name: Check all tests
         run: |
           docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
-
-      - name: Curl the URL assigned to the deployed application
-        run: |
-          docker run -p 7860:7860 $DOCKERIMAGE_NAME
-          curl -s -o /dev/null -w "%{http_code}" $DEPLOY_URL
