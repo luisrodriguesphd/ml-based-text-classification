@@ -17,3 +17,11 @@ classifier: # simple example without compression
   type: pickle.PickleDataSet
   filepath: data/06_models/clf.pkl
   backend: pickle
+
+metrics_report_train:
+  type: json.JSONDataSet
+  filepath: data/08_reporting/metrics_report_train.json
+
+metrics_report_test:
+  type: json.JSONDataSet
+  filepath: data/08_reporting/metrics_report_test.json
