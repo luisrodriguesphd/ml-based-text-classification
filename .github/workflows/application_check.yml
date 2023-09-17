@@ -23,6 +23,6 @@ jobs:
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
-    - name: Unitary Tests (Functions)
-      run: |
-        docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME src/tests/tests_unitary/
+      - name: Unitary Tests (Functions)
+        run: |
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME src/tests/tests_unitary/
