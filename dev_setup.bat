@@ -22,7 +22,7 @@ py -m ensurepip --upgrade
 :: Update pip
 py -m pip install --upgrade pip
 :: Install requirements
-pip install -r src\requirements.in
+pip install -r src\requirements.txt
 :: Install the currenct project
 pip install -e src\.
 

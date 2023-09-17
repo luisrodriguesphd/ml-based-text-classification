@@ -17,6 +17,8 @@ imblearn
 scikit-learn
 xgboost
 
+fastapi
+pydantic
 uvicorn
 
 # Update the requirements.txt file by running:

@@ -3,21 +3,17 @@
 import pickle
 
 
-class TextClassPredictor():
+class TextClassPredictor:
     """Class to predict text category using trained models.
 
     Args:
         tle: pickle of the target label encoder.
         clf: pickle of the classifier.
-        ndigits: number of digits of the probability.
-
-    Returns:
-        y_pred: Prediction of the target variable.
     """
-    def __init__(self, tle: pickle, clf: pickle, ndigits: int = 4):
+
+    def __init__(self, tle: pickle, clf: pickle):
         self.tle = tle
         self.clf = clf
-        self.ndigits = ndigits
 
     def predict(self, x: str):
         """Predict text category.
@@ -26,10 +22,10 @@ class TextClassPredictor():
             x: text to classify its category - narrative
 
         Returns:
-            y: Prediction of the target variable - category
+            response: dictonary with predicted category and its probabiltiy.
         """
         y_encoded = self.clf.predict([x])
-        y = self.tle.inverse_transform(y_encoded)[0]
+        y_pred = self.tle.inverse_transform(y_encoded)[0]
         y_proba = max(self.clf.predict_proba([x])[0])
-        response = {'category': y, 'probability': round(y_proba, self.ndigits)}
-        return  response
+        response = {"y_pred": y_pred, "y_proba": y_proba}
+        return response

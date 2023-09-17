@@ -25,6 +25,7 @@ model_training:
     seed: 0
 
 model_prediction:
+  id: "0000"
   narrative: "Any test text to classify."
 
 model_serving:
