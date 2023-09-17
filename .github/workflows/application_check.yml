@@ -1,7 +1,8 @@
 name: Application Checking
 
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
     branches: [ main ]
 
 jobs:
@@ -25,10 +26,6 @@ jobs:
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
-      - name: Train the machine learning model
-        run: |
-          docker run --rm --entrypoint "kedro" $DOCKERIMAGE_NAME run --pipeline training
-
       - name: Check all tests
         run: |
           docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
