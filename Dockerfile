@@ -17,11 +17,11 @@ ENV REQUIREMENTS_PATH=$REQUIREMENTS_PATH
 ARG ENTRYPOINT_PATH="./entrypoint.sh"
 ENV ENTRYPOINT_PATH=$ENTRYPOINT_PATH
 
-RUN mkdir -p /.
+RUN mkdir -p /code/
 
-WORKDIR .
+WORKDIR /code
 
-COPY $REQUIREMENTS_PATH ./requirements.txt
+COPY $REQUIREMENTS_PATH /code/requirements.txt
 
 RUN apt update &&\
     pip install pip --upgrade &&\
