@@ -31,5 +31,5 @@ jobs:
 
       - name: Curl the URL assigned to the deployed application
         run: |
-          docker container run -p 7860:7860 $DOCKERIMAGE_NAME
+          docker run -p 7860:7860 $DOCKERIMAGE_NAME
           curl -s -o /dev/null -w "%{http_code}" $DEPLOY_URL
