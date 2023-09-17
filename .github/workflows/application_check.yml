@@ -14,6 +14,8 @@ jobs:
       ENTRYPOINT_PATH: "./entrypoint.sh"
       DOCKERFILE_PATH: "Dockerfile"
       DOCKERIMAGE_NAME: "classifier_app"
+      DEPLOY_URL: "http://localhost:7860/"
+
     steps:
       
       - name: Check out the code
@@ -23,6 +25,11 @@ jobs:
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
-      - name: Unitary Tests (Functions)
+      - name: Check unitary tests
         run: |
           docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
+
+      - name: Curl the URL assigned to the deployed application
+        run: |
+          docker container run -it -p 7860:7860 $DOCKERIMAGE_NAME
+          curl -s -o /dev/null -w "%{http_code}" $DEPLOY_URL
