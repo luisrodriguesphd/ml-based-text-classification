@@ -1,0 +1,31 @@
+name: Application Checking
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build_image:
+    name: Image Building
+    runs-on: ubuntu-latest
+    env:
+      REQUIREMENTS_PATH: "./src/requirements.in"
+      ENTRYPOINT_PATH: "./entrypoint.sh"
+      DOCKERFILE_PATH: "Dockerfile"
+      DOCKERIMAGE_NAME: "classifier_app"
+      DEPLOY_URL: "http://localhost:7860/"
+
+    steps:
+      
+      - name: Check out the code
+        uses: actions/checkout@v3
+      
+      - name: Build Docker image
+        run: |
+          docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
+    
+      - name: Check all tests
+        run: |
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
