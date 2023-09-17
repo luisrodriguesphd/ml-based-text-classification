@@ -12,5 +12,5 @@ def register_pipelines() -> dict[str, Pipeline]:
         A mapping from pipeline names to ``Pipeline`` objects.
     """
     pipelines = find_pipelines()
-    # pipelines["__default__"] = pipelines["prediction"]
+    pipelines["__default__"] = pipelines["prediction"]
     return pipelines

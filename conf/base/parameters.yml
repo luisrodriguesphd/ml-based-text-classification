@@ -25,7 +25,7 @@ model_training:
     seed: 0
 
 model_prediction:
-  narrative: "Any test text."
+  narrative: "Any test text to classify."
 
 model_serving:
   title: "Text-Classifier" 
