@@ -52,7 +52,7 @@ jobs:
 
       - name: Install requirements
         run: |
-          pip install --quiet --requirement src/requirements.txt
+          pip install --quiet --requirement src/requirements.in
       
       - name: Check unitary tests
         run: |
