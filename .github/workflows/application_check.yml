@@ -25,4 +25,4 @@ jobs:
     
       - name: Unitary Tests (Functions)
         run: |
-          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME src/tests/tests_unitary/
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
