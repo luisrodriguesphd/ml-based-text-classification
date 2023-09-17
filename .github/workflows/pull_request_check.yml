@@ -1,7 +1,8 @@
 name: Pull Request Checking
 
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
     branches: [ main ]
 
 jobs:
