@@ -28,7 +28,7 @@ RUN apt update &&\
 
 COPY . .
 
-RUN ls
-
 RUN pip install -e ./src/. && \
     chmod +x $ENTRYPOINT_PATH
+
+ENTRYPOINT $ENTRYPOINT_PATH
