@@ -1,7 +1,8 @@
 name: CI/CD/CT Workflow
 
 on:
-  pull_request:
+  workflow_dispatch:
+  push:
     branches: [ main ]
 
 jobs:
