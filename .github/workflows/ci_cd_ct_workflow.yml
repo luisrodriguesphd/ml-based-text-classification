@@ -36,7 +36,7 @@ jobs:
     
       - name: Print working directory
         run: |
-          docker run --entrypoint "pwd" $DOCKERIMAGE_NAME
+          docker run --entrypoint $DOCKERIMAGE_NAME "pwd"
 
       - name: Print current directory content
         run: |
