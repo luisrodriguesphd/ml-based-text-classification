@@ -19,6 +19,9 @@ jobs:
         with:
           python-version: '3.10.5' 
 
+      - name: Print working directory
+        run: pwd
+
       - name: Print current directory content
         run: ls -R
 
@@ -31,9 +34,13 @@ jobs:
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
+      - name: Print working directory
+        run: |
+          docker run --entrypoint "pwd" $DOCKERIMAGE_NAME
+
       - name: Print current directory content
         run: |
-          docker run --entrypoint "ls" $DOCKERIMAGE_NAME -R
+          docker run --entrypoint "ls" $DOCKERIMAGE_NAME
 
       - name: Check all tests
         run: |
