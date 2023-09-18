@@ -33,7 +33,7 @@ https://kedro.readthedocs.io/en/stable/kedro_project_setup/settings.html."""
 #       }
 # }
 
-import os
+# import os
 
 # https://docs.kedro.org/en/stable/kedro.config.TemplatedConfigLoader.html
 from kedro.config import TemplatedConfigLoader
@@ -41,8 +41,7 @@ from kedro.config import TemplatedConfigLoader
 CONFIG_LOADER_CLASS = TemplatedConfigLoader
 
 CONFIG_LOADER_ARGS = {
-    "globals_pattern": "*.yml",
-    "globals_dict": os.environ,
+    "globals_pattern": "*.yml",  # "globals_dict": os.environ,
 }
 
 # Class that manages Kedro's library components.
