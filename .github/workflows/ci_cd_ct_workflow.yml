@@ -1,4 +1,4 @@
-name: Application Checking
+name: CI/CD/CT Workflow
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  run_test:
-    name: Code Test Checking
+  ci_cd_ct:
+    name: Prediction Service Deployment
     runs-on: ubuntu-latest
     env:
       REQUIREMENTS_PATH: "./src/requirements.in"
