@@ -8,6 +8,11 @@ jobs:
 
   ci_cd_ct:
     name: Prediction Service Deployment
+    env:
+      REQUIREMENTS_PATH: "./src/requirements.in"
+      ENTRYPOINT_PATH: "./entrypoint.sh"
+      DOCKERFILE_PATH: "Dockerfile"
+      DOCKERIMAGE_NAME: "classifier_app"
     runs-on: ubuntu-latest
     steps:
       
@@ -26,17 +31,12 @@ jobs:
         run: ls -R
 
       - name: Build Docker image
-        env:
-          REQUIREMENTS_PATH: "./src/requirements.in"
-          ENTRYPOINT_PATH: "./entrypoint.sh"
-          DOCKERFILE_PATH: "Dockerfile"
-          DOCKERIMAGE_NAME: "classifier_app"
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
       - name: Print working directory
         run: |
-          docker run --entrypoint $DOCKERIMAGE_NAME "pwd"
+          docker run --entrypoint "pwd" $DOCKERIMAGE_NAME
 
       - name: Print current directory content
         run: |
