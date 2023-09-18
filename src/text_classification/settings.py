@@ -43,14 +43,15 @@ CONFIG_LOADER_CLASS = OmegaConfigLoader
 # }
 
 # # https://docs.kedro.org/en/stable/configuration/advanced_configuration.html
-# CONFIG_LOADER_ARGS = {
-#       "config_patterns": {
-#           "parameters": ["parameters*", "parameters*/**", "**/parameters*"],
-#           "credentials": ["credentials*", "**/credentials*"],
-#           "logging": ["logging*", "**/logging*"],
-#           "catalog": ["catalog*", "**/catalog*"],
-#       }
-# }
+config_patterns = {
+    "catalog": ["catalog*", "catalog*/**", "**/catalog*"],
+    "parameters": ["parameters*", "parameters*/**", "**/parameters*"],
+    "credentials": ["credentials*", "credentials*/**", "**/credentials*"],
+    "logging": ["logging*", "logging*/**", "**/logging*"],
+}
+CONFIG_LOADER_ARGS = {
+        "config_patterns": config_patterns
+}
 
 # https://docs.kedro.org/en/0.18.5/kedro_project_setup/configuration.html
 # kedro run --conf-source=<path-to-new-conf-directory>
