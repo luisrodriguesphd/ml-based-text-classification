@@ -7,7 +7,7 @@ conf/local/**
 .telemetry
 
 # ignore potentially sensitive credentials files
-conf/**/*credentials*
+#conf/**/*credentials*
 
 # ignore everything in the following folders
 data/**

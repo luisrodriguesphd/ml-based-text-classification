@@ -13,16 +13,14 @@ jobs:
       
       - name: Check out the code
         uses: actions/checkout@v4.0.0
-        with:
-          path: 'kkk'
 
       - name: Setup Python environment
         uses: actions/setup-python@v4
         with:
           python-version: '3.10.5' 
 
-      - name: PRint current directory
-        run: pwd
+      - name: Print current directory content
+        run: ls -l
 
       - name: Install requirements
         run: |
