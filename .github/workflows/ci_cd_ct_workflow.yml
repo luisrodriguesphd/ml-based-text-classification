@@ -1,4 +1,4 @@
-name: Application Checking
+name: CI/CD/CT Workflow
 
 on:
   workflow_dispatch:
@@ -7,8 +7,8 @@ on:
 
 jobs:
 
-  run_test:
-    name: Code Test Checking
+  ci_cd_ct:
+    name: Prediction Service Deployment
     runs-on: ubuntu-latest
     env:
       REQUIREMENTS_PATH: "./src/requirements.in"
@@ -27,4 +27,4 @@ jobs:
     
       - name: Check all tests
         run: |
-          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME -v .

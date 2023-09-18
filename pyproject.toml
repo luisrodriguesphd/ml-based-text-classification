@@ -7,11 +7,15 @@ kedro_init_version = "0.18.12"
 profile = "black"
 extend_skip = [".ipython", ".git", "env", ".github"]
 
+[tool.black]
+line-length = 88
+extend_skip = [".ipython", ".git", "env", ".github"]
+
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
 --ignore src/tests/tests_regression/ \
---cov src/mlops_toolkit_project -ra"""
+--cov src/text_classification -ra"""
 
 [tool.coverage.report]
 fail_under = 0
