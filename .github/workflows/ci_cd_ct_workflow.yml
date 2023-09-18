@@ -8,21 +8,11 @@ jobs:
 
   ci_cd_ct:
     name: Prediction Service Deployment
-    env:
-      REQUIREMENTS_PATH: "./src/requirements.in"
-      ENTRYPOINT_PATH: "./entrypoint.sh"
-      DOCKERFILE_PATH: "Dockerfile"
-      DOCKERIMAGE_NAME: "classifier_app"
     runs-on: ubuntu-latest
     steps:
       
       - name: Check out the code
         uses: actions/checkout@v4.0.0
-
-      - name: Setup Python environment
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10.5' 
 
       - name: Print working directory
         run: pwd
@@ -30,29 +20,26 @@ jobs:
       - name: Print current directory content
         run: ls -R
 
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.5' 
+      
+      - name: Install requirements
+        run: |
+          pip install --upgrade pip
+          pip install --quiet --requirement src/requirements.in
+          pip install -e src/.
+
       - name: Train ML model
         run: |
           kedro run --conf-source=/home/runner/work/text-classification/text-classification/conf --pipeline training
-
-
-
 
       - name: Build Docker image
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
-      - name: Print working directory
-        run: |
-          docker run --entrypoint "pwd" $DOCKERIMAGE_NAME
-
-      - name: Print current directory content
-        run: |
-          docker run --entrypoint "ls" $DOCKERIMAGE_NAME -R
-
-      - name: Train the machine learning model
-        run: |
-          docker run --rm --entrypoint "kedro" $DOCKERIMAGE_NAME run --pipeline training
-
       - name: Check all tests
         run: |
-          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME -v .
+
