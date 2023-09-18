@@ -30,5 +30,7 @@ RUN apt update &&\
 
 COPY text-classification/src .
 
+RUN ls
+
 RUN pip install -e ./src/. && \
     chmod +x $ENTRYPOINT_PATH

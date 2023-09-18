@@ -24,7 +24,7 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -f $DOCKERFILE_PATH --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME .
+          docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
       - name: Check all tests
         run: |

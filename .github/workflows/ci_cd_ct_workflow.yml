@@ -22,16 +22,19 @@ jobs:
       - name: Print current directory content
         run: ls -R
 
-      - name: Install requirements
-        run: |
-          pip install --upgrade pip
-          pip install --quiet --requirement src/requirements.in
-          pip install -e src/.
-
       - name: Build Docker image
+        env:
+          REQUIREMENTS_PATH: "./src/requirements.in"
+          ENTRYPOINT_PATH: "./entrypoint.sh"
+          DOCKERFILE_PATH: "Dockerfile"
+          DOCKERIMAGE_NAME: "classifier_app"
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
+      - name: Print current directory content
+        run: |
+          docker run --entrypoint "ls" $DOCKERIMAGE_NAME -R
+
       - name: Check all tests
         run: |
           docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME -v .
