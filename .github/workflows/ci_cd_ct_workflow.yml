@@ -21,6 +21,7 @@ jobs:
 
       - name: Install requirements
         run: |
+          py -m pip install --upgrade pip
           pip install --quiet --requirement src/requirements.in
           pip install -e src/.
 
