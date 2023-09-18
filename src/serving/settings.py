@@ -25,3 +25,15 @@ with KedroSession.create(package_name=package_name) as session:
 predict_pipeline = pipelines["prediction"]
 
 runner = SequentialRunner()
+
+# # Alternative way to set the ConfigLoader
+#
+# # Set the current working directory as project root
+# src_path = os.path.dirname(os.path.dirname(__file__))
+# root_path = os.path.join(*os.path.split(src_path)[:-1])
+# os.chdir(root_path)
+#
+# conf_path = os.path.join(settings.CONF_SOURCE)
+# conf_loader = ConfigLoader(conf_source=conf_path)
+#
+# project_path = os.path.dirname(src_path)

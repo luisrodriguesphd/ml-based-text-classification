@@ -1,8 +1,7 @@
 name: Application Checking
 
 on:
-  workflow_dispatch:
-  push:
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -27,4 +26,4 @@ jobs:
     
       - name: Check all tests
         run: |
-          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME -v .
