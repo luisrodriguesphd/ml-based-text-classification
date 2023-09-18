@@ -28,9 +28,7 @@ RUN apt update &&\
     pip install --no-cache-dir -r ./requirements.txt && \
     mkdir -p /tmp/logs/
 
-COPY . .
+COPY text-classification/src .
 
 RUN pip install -e ./src/. && \
     chmod +x $ENTRYPOINT_PATH
-
-ENTRYPOINT $ENTRYPOINT_PATH
