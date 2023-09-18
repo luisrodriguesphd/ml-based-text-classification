@@ -13,6 +13,8 @@ jobs:
       
       - name: Check out the code
         uses: actions/checkout@v4.0.0
+        with:
+          path: 'kkk'
 
       - name: Setup Python environment
         uses: actions/setup-python@v4
