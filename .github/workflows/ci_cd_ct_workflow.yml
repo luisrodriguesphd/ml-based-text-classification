@@ -28,10 +28,6 @@ jobs:
           pip install --quiet --requirement src/requirements.in
           pip install -e src/.
 
-      - name: Train ML model
-        run: |
-          kedro run --pipeline training
-      
       - name: Build Docker image
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
@@ -39,3 +35,7 @@ jobs:
       - name: Check all tests
         run: |
           docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME -v .
+
+      - name: Train the machine learning model
+        run: |
+          docker run --rm --entrypoint "kedro" $DOCKERIMAGE_NAME run --pipeline training
