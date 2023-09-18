@@ -33,16 +33,14 @@ CONFIG_LOADER_CLASS = OmegaConfigLoader
 #       }
 # }
 
-# # Alternative solution from:
-# #   https://docs.kedro.org/en/stable/kedro.config.TemplatedConfigLoader.html
-# from kedro.config import TemplatedConfigLoader
-#
-# CONFIG_LOADER_CLASS = TemplatedConfigLoader
-# # import os
-#
-# CONFIG_LOADER_ARGS = {
-#     "globals_pattern": "*.yml",  # "globals_dict": os.environ,
-# }
+# Alternative solution from:
+#   https://docs.kedro.org/en/stable/kedro.config.TemplatedConfigLoader.html
+from kedro.config import TemplatedConfigLoader
+CONFIG_LOADER_CLASS = TemplatedConfigLoader
+# import os
+CONFIG_LOADER_ARGS = {
+    "globals_pattern": "*.yml",  # "globals_dict": os.environ,
+}
 
 # Class that manages Kedro's library components.
 # from kedro.framework.context import KedroContext
