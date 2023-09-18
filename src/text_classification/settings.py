@@ -33,14 +33,28 @@ CONFIG_LOADER_CLASS = OmegaConfigLoader
 #       }
 # }
 
-# Alternative solution from:
-#   https://docs.kedro.org/en/stable/kedro.config.TemplatedConfigLoader.html
-from kedro.config import TemplatedConfigLoader
-CONFIG_LOADER_CLASS = TemplatedConfigLoader
-import os
+# # Alternative solution from:
+# #   https://docs.kedro.org/en/stable/kedro.config.TemplatedConfigLoader.html
+# from kedro.config import TemplatedConfigLoader
+# CONFIG_LOADER_CLASS = TemplatedConfigLoader
+# import os
+# CONFIG_LOADER_ARGS = {
+#     "globals_pattern": "*.yml",  "globals_dict": os.environ,
+# }
+
+# https://docs.kedro.org/en/stable/configuration/advanced_configuration.html
 CONFIG_LOADER_ARGS = {
-    "globals_pattern": "*.yml",  "globals_dict": os.environ,
+      "config_patterns": {
+          "parameters": ["parameters*", "parameters*/**", "**/parameters*"],
+          "credentials": ["credentials*", "**/credentials*"],
+          "logging": ["logging*", "**/logging*"],
+          "catalog": ["catalog*", "**/catalog*"],
+      }
 }
+
+# https://docs.kedro.org/en/0.18.5/kedro_project_setup/configuration.html
+# kedro run --conf-source=<path-to-new-conf-directory>
+#/home/runner/work/text-classification/text-classification/conf/base
 
 # Class that manages Kedro's library components.
 # from kedro.framework.context import KedroContext
