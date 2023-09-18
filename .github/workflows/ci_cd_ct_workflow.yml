@@ -38,7 +38,7 @@ jobs:
 
       - name: Train ML model
         run: |
-          kedro run --conf-source=/text-classification/conf --pipeline training
+          kedro run --conf-source=/conf --pipeline training
 
       - name: Build Docker image
         run: |
