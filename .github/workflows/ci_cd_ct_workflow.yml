@@ -1,0 +1,36 @@
+name: CI/CD/CT Workflow
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  ci_cd_ct:
+    name: Prediction Service Deployment
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Check out the code
+        uses: actions/checkout@v3
+      
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.5' 
+
+      - name: Install requirements
+        run: |
+          pip install --quiet --requirement src/requirements.in
+
+      - name: Train ML model
+        run: |
+          kedro run --pipeline training
+      
+      - name: Build Docker image
+        run: |
+          docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
+    
+      - name: Check all tests
+        run: |
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
