@@ -22,6 +22,7 @@ jobs:
       - name: Install requirements
         run: |
           pip install --quiet --requirement src/requirements.in
+          pip install -e src/.
 
       - name: Train ML model
         run: |
