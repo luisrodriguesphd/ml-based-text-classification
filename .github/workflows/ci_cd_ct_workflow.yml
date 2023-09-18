@@ -9,6 +9,11 @@ jobs:
   ci_cd_ct:
     name: Prediction Service Deployment
     runs-on: ubuntu-latest
+    env:
+      REQUIREMENTS_PATH: "./src/requirements.in"
+      ENTRYPOINT_PATH: "./entrypoint.sh"
+      DOCKERFILE_PATH: "Dockerfile"
+      DOCKERIMAGE_NAME: "classifier_app"
     steps:
       
       - name: Check out the code
@@ -33,7 +38,7 @@ jobs:
 
       - name: Train ML model
         run: |
-          kedro run --conf-source=/home/runner/work/text-classification/text-classification/conf --pipeline training
+          kedro run --conf-source=./text-classification/conf --pipeline training
 
       - name: Build Docker image
         run: |
