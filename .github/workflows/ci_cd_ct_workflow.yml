@@ -30,6 +30,13 @@ jobs:
       - name: Print current directory content
         run: ls -R
 
+      - name: Train ML model
+        run: |
+          kedro run --conf-source=/home/runner/work/text-classification/text-classification/conf --pipeline training
+
+
+
+
       - name: Build Docker image
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
