@@ -17,18 +17,16 @@ ENV REQUIREMENTS_PATH=$REQUIREMENTS_PATH
 ARG ENTRYPOINT_PATH="./entrypoint.sh"
 ENV ENTRYPOINT_PATH=$ENTRYPOINT_PATH
 
-RUN mkdir -p /code/
+WORKDIR /
 
-WORKDIR /code
-
-COPY $REQUIREMENTS_PATH /code/requirements.txt
+COPY $REQUIREMENTS_PATH /requirements.txt
 
 RUN apt update &&\
     pip install pip --upgrade &&\
     pip install --no-cache-dir -r ./requirements.txt && \
     mkdir -p /tmp/logs/
 
-COPY text-classification/src .
+COPY . .
 
 RUN ls
 
