@@ -7,6 +7,10 @@ kedro_init_version = "0.18.12"
 profile = "black"
 extend_skip = [".ipython", ".git", "env", ".github"]
 
+[tool.black]
+line-length = 88
+extend_skip = [".ipython", ".git", "env", ".github"]
+
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
