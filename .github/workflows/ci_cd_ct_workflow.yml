@@ -20,7 +20,7 @@ jobs:
           python-version: '3.10.5' 
 
       - name: Print current directory content
-        run: ls -l
+        run: ls
 
       - name: Install requirements
         run: |
