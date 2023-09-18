@@ -40,12 +40,12 @@ jobs:
 
       - name: Print current directory content
         run: |
-          docker run --entrypoint "ls" $DOCKERIMAGE_NAME
-
-      - name: Check all tests
-        run: |
-          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME -v .
+          docker run --entrypoint "ls" $DOCKERIMAGE_NAME -R
 
       - name: Train the machine learning model
         run: |
           docker run --rm --entrypoint "kedro" $DOCKERIMAGE_NAME run --pipeline training
+
+      - name: Check all tests
+        run: |
+          docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME --cov=.
