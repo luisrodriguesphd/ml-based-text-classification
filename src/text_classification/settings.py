@@ -22,9 +22,9 @@ https://kedro.readthedocs.io/en/stable/kedro_project_setup/settings.html."""
 # CONF_SOURCE = "conf"
 
 # Class that manages how configuration is loaded.
-# from kedro.config import OmegaConfigLoader  # noqa: import-outside-toplevel
+from kedro.config import OmegaConfigLoader  # noqa: import-outside-toplevel
 
-# CONFIG_LOADER_CLASS = OmegaConfigLoader
+CONFIG_LOADER_CLASS = OmegaConfigLoader
 # Keyword arguments to pass to the `CONFIG_LOADER_CLASS` constructor.
 # CONFIG_LOADER_ARGS = {
 #       "config_patterns": {
@@ -33,16 +33,16 @@ https://kedro.readthedocs.io/en/stable/kedro_project_setup/settings.html."""
 #       }
 # }
 
-# import os
-
-# https://docs.kedro.org/en/stable/kedro.config.TemplatedConfigLoader.html
-from kedro.config import TemplatedConfigLoader
-
-CONFIG_LOADER_CLASS = TemplatedConfigLoader
-
-CONFIG_LOADER_ARGS = {
-    "globals_pattern": "*.yml",  # "globals_dict": os.environ,
-}
+# # Alternative solution from:
+# #   https://docs.kedro.org/en/stable/kedro.config.TemplatedConfigLoader.html
+# from kedro.config import TemplatedConfigLoader
+#
+# CONFIG_LOADER_CLASS = TemplatedConfigLoader
+# # import os
+#
+# CONFIG_LOADER_ARGS = {
+#     "globals_pattern": "*.yml",  # "globals_dict": os.environ,
+# }
 
 # Class that manages Kedro's library components.
 # from kedro.framework.context import KedroContext
