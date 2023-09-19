@@ -1,6 +1,8 @@
+import logging
 import pickle
 from typing import Any, Dict
 
+from text_classification.utils.data_prep import text_cleaner
 from text_classification.utils.model_prediction import TextClassPredictor
 
 
@@ -24,7 +26,13 @@ def make_prediction(
     narrative = parameters["model_prediction"]["narrative"]
 
     # Make prediction
-    tcp = TextClassPredictor(tle=tle, clf=clf)
+    tcp = TextClassPredictor(
+        text_cleaner=text_cleaner, target_encoder=tle, classfier=clf
+    )
     prediction = tcp.predict(narrative)
+
+    # Add logs
+    logger = logging.getLogger(__name__)
+    logger.info("[manual]: Predicted output: %s", prediction)
 
     return prediction
