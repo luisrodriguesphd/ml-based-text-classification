@@ -25,9 +25,6 @@ def predict(request: predict_request) -> predict_respose:
     predict_parameters = update_parameters_with_predict_request(parameters, request)
     catalog.add("parameters", MemoryDataSet(predict_parameters), replace=True)
     pipeline_output = runner.run(pipeline=predict_pipeline, catalog=catalog)
-    print(pipeline_output)
-    print(type(pipeline_output))
-    print(pipeline_output["prediction"])
     response = predict_respose(
         category=pipeline_output["prediction"]["y_pred"],
         probability="%.4f" % pipeline_output["prediction"]["y_proba"],
