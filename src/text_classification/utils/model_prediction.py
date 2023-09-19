@@ -1,19 +1,24 @@
 """Module that contains common functions used in model prediction"""
 
 import pickle
+from typing import Callable
 
 
 class TextClassPredictor:
     """Class to predict text category using trained models.
 
     Args:
-        tle: pickle of the target label encoder.
-        clf: pickle of the classifier.
+        text_cleaner: function to clean the text.
+        target_encoder: pickle of the target label encoder.
+        classfier: pickle of the classifier.
     """
 
-    def __init__(self, tle: pickle, clf: pickle):
-        self.tle = tle
-        self.clf = clf
+    def __init__(
+        self, text_cleaner: Callable, target_encoder: pickle, classfier: pickle
+    ):
+        self.text_cleaner = text_cleaner
+        self.target_encoder = target_encoder
+        self.classfier = classfier
 
     def predict(self, x: str):
         """Predict text category.
@@ -24,8 +29,9 @@ class TextClassPredictor:
         Returns:
             response: dictonary with predicted category and its probabiltiy.
         """
-        y_encoded = self.clf.predict([x])
-        y_pred = self.tle.inverse_transform(y_encoded)[0]
-        y_proba = max(self.clf.predict_proba([x])[0])
+        x_clean = self.text_cleaner([x])
+        y_encoded = self.classfier.predict(x_clean)
+        y_pred = self.target_encoder.inverse_transform(y_encoded)[0]
+        y_proba = max(self.classfier.predict_proba([x])[0])
         response = {"y_pred": y_pred, "y_proba": y_proba}
         return response
