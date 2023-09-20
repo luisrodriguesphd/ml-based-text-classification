@@ -14,7 +14,7 @@ model_training:
     norm: "l2"
   classifier_parameters:
     n_estimators: 15
-    max_depth: 6
+    max_depth: 5
     learning_rate: 0.3
     subsample: 1
     colsample_bytree: 1
