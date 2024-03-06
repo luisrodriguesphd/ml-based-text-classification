@@ -1,5 +1,7 @@
 kedro==0.18.12
 
+sphinx
+
 black
 flake8
 isort

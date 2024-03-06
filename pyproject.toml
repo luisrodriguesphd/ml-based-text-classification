@@ -1,6 +1,6 @@
 [tool.kedro]
-package_name = "text_classification"
-project_name = "text-classification"
+package_name = "ml_based_text_classification"
+project_name = "ml-based-text-classification"
 kedro_init_version = "0.18.12"
 
 [tool.isort]
@@ -15,7 +15,7 @@ extend_skip = [".ipython", ".git", "env", ".github"]
 addopts = """
 --cov-report term-missing \
 --ignore src/tests/tests_regression/ \
---cov src/text_classification -ra"""
+--cov src/ml_based_text_classification -ra"""
 
 [tool.coverage.report]
 fail_under = 0

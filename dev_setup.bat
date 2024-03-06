@@ -1,4 +1,4 @@
-set repo_name=text-classification
+set repo_name=ml-based-text-classification
 
 
 :: Creating virtual environment

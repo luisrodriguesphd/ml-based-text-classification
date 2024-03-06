@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "text_classification"
+name = "ml_based_text_classification"
 version = "0.1"
 dynamic = ["dependencies"]
 
@@ -11,7 +11,7 @@ dynamic = ["dependencies"]
 exclude = ["tests"]
 
 [project.scripts]
-text-classification = "text_classification.__main__:main"
+ml-based-text-classification = "ml_based_text_classification.__main__:main"
 
 [project.optional-dependencies]
 docs = [
