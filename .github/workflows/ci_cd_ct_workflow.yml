@@ -20,6 +20,10 @@ jobs:
       
       - name: Check out the code
         uses: actions/checkout@v3
+
+      - name: Train ML model
+        run: |
+          kedro run --pipeline training
       
       - name: Build Docker image
         run: |
