@@ -21,9 +21,9 @@ jobs:
 
       - name: Install requirements
         run: |
-          pip install --quiet black
-          pip install --quiet flake8
-          pip install --quiet isort
+          pip install --quiet black==23.9.1
+          pip install --quiet flake8==6.1.0
+          pip install --quiet isort==5.12.0
       
       - name: Check Isort
         run: |
