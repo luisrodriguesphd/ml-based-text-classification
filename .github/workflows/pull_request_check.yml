@@ -8,7 +8,7 @@ jobs:
 
   lint:
     name: Code Lint Checking
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       
       - name: Check out the code
@@ -39,7 +39,7 @@ jobs:
 
   unit_test:
     name: Unit Test Checking
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       
       - name: Check out the code
