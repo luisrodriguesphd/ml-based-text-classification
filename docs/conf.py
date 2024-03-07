@@ -6,10 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'ML-Based Text Classification'
-copyright = '2023, Luis Rodrigues'
-author = 'Luis Rodrigues'
-release = '04/12/23'
+project = "ML-Based Text Classification"
+copyright = "2023, Luis Rodrigues"
+author = "Luis Rodrigues"
+release = "04/12/23"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -17,13 +17,12 @@ release = '04/12/23'
 extensions = ["sphinx.ext.autodoc", "sphinx.ext.autosummary"]
 autosummary_generate = True
 
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
-html_static_path = ['_static']
+html_theme = "alabaster"
+html_static_path = ["_static"]
