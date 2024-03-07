@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.datasets import fetch_20newsgroups
 
-from text_classification.utils.data_prep import text_cleaner
+from ml_based_text_classification.utils.data_prep import text_cleaner
 
 # Load text dataset
 n_samples = 600

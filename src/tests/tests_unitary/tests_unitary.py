@@ -2,7 +2,7 @@
 
 import pytest
 
-from text_classification.pipelines.training.nodes import train_model
+from ml_based_text_classification.pipelines.training.nodes import train_model
 
 from .unitary_test_data import data_test_train_model
 

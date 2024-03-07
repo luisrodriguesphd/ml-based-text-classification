@@ -1,2 +1,0 @@
-"""mlops-toolkit-project
-"""
