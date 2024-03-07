@@ -35,7 +35,7 @@ jobs:
 
       - name: Check Black
         run: |
-          black --check .
+          black --line-length=88 --check .
 
   unit_test:
     name: Unit Test Checking
