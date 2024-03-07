@@ -20,15 +20,15 @@ jobs:
       
       - name: Check out the code
         uses: actions/checkout@v3
-
-      - name: Train ML model
-        run: |
-          kedro run --pipeline training
       
       - name: Build Docker image
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
     
+      - name: Train ML model
+        run: |
+          docker run --rm --entrypoint "kedro" $DOCKERIMAGE_NAME run --pipeline training
+
       - name: Check all tests
         run: |
           docker run --rm --entrypoint "pytest" $DOCKERIMAGE_NAME -v .
