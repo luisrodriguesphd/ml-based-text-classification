@@ -9,7 +9,7 @@ jobs:
 
   ci_cd_ct:
     name: Prediction Service Deployment
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       REQUIREMENTS_PATH: "./src/requirements.in"
       ENTRYPOINT_PATH: "./entrypoint.sh"
@@ -20,14 +20,23 @@ jobs:
       
       - name: Check out the code
         uses: actions/checkout@v3
+
+      - name: Setup Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.5' 
+
+      - name: Install requirements
+        run: |
+          pip install requirement.txt
+
+      - name: Train ML model
+        run: |
+          kedro run --pipeline training
       
       - name: Build Docker image
         run: |
           docker build --build-arg REQUIREMENTS_PATH=$REQUIREMENTS_PATH --build-arg ENTRYPOINT_PATH=$ENTRYPOINT_PATH  -t $DOCKERIMAGE_NAME -f $DOCKERFILE_PATH .
-    
-      - name: Train ML model
-        run: |
-          docker run --rm --entrypoint "kedro" $DOCKERIMAGE_NAME run --pipeline training
 
       - name: Check all tests
         run: |
