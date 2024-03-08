@@ -9,9 +9,9 @@ jobs:
 
   ci_cd_ct:
     name: Prediction Service Deployment
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
-      REQUIREMENTS_PATH: "./src/requirements.in"
+      REQUIREMENTS_PATH: "./src/requirements.txt"
       ENTRYPOINT_PATH: "./entrypoint.sh"
       DOCKERFILE_PATH: "Dockerfile"
       DOCKERIMAGE_NAME: "classifier_app"
@@ -28,7 +28,7 @@ jobs:
 
       - name: Install requirements
         run: |
-          pip install requirement.txt
+          pip install $REQUIREMENTS_PATH
 
       - name: Train ML model
         run: |
