@@ -30,6 +30,10 @@ jobs:
         run: |
           pip install -r $REQUIREMENTS_PATH
 
+      - name: List Kedro Config Directory
+        run: |
+          ls -R ./conf
+
       - name: Train ML model
         run: |
           kedro run --pipeline training --env base
