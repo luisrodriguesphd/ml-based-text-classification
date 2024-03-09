@@ -28,11 +28,11 @@ jobs:
 
       - name: Install requirements
         run: |
-          pip install -r $REQUIREMENTS_PATH --env local
+          pip install -r $REQUIREMENTS_PATH
 
       - name: Train ML model
         run: |
-          kedro run --pipeline training
+          kedro run --pipeline training --env base
       
       - name: Build Docker image
         run: |
