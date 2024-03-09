@@ -28,7 +28,7 @@ jobs:
 
       - name: Install requirements
         run: |
-          pip install -r $REQUIREMENTS_PATH
+          pip install -r $REQUIREMENTS_PATH --env local
 
       - name: Train ML model
         run: |
